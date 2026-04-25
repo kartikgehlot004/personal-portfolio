@@ -1,0 +1,174 @@
+type Token = text;
+type StatItem = 
+ record {
+   statLabel: text;
+   value: text;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok: text;
+ };
+type ResearchProject = 
+ record {
+   description: text;
+   fullContent: text;
+   id: nat;
+   imageUrl: text;
+   pdfUrl: opt text;
+   seqNum: nat;
+   tags: vec text;
+   title: text;
+ };
+type ResearchInput = 
+ record {
+   description: text;
+   fullContent: text;
+   imageUrl: text;
+   pdfUrl: opt text;
+   seqNum: nat;
+   tags: vec text;
+   title: text;
+ };
+type PublicationInput = 
+ record {
+   authors: vec text;
+   link: text;
+   pdfUrl: opt text;
+   pubType: text;
+   title: text;
+   venue: text;
+   year: nat;
+ };
+type Publication = 
+ record {
+   authors: vec text;
+   id: nat;
+   link: text;
+   pdfUrl: opt text;
+   pubType: text;
+   title: text;
+   venue: text;
+   year: nat;
+ };
+type ProfileInput = 
+ record {
+   avatarUrl: text;
+   bio: text;
+   milestones: vec Milestone;
+   name: text;
+   skills: vec text;
+   stats: vec StatItem;
+ };
+type Profile = 
+ record {
+   avatarUrl: text;
+   bio: text;
+   milestones: vec Milestone;
+   name: text;
+   skills: vec text;
+   stats: vec StatItem;
+ };
+type NoteInput = 
+ record {
+   content: text;
+   excerpt: text;
+   pdfUrl: opt text;
+   publishDate: text;
+   tags: vec text;
+   title: text;
+ };
+type Note = 
+ record {
+   content: text;
+   excerpt: text;
+   id: nat;
+   pdfUrl: opt text;
+   publishDate: text;
+   tags: vec text;
+   title: text;
+ };
+type Milestone = 
+ record {
+   description: text;
+   title: text;
+   year: nat;
+ };
+type ContactSubmission = 
+ record {
+   email: text;
+   message: text;
+   name: text;
+   subject: text;
+ };
+type ContactRecord = 
+ record {
+   createdAt: int;
+   email: text;
+   id: nat;
+   message: text;
+   name: text;
+   subject: text;
+ };
+type ArticleInput = 
+ record {
+   category: text;
+   content: text;
+   coverImage: text;
+   excerpt: text;
+   pdfUrl: opt text;
+   publishDate: text;
+   title: text;
+ };
+type Article = 
+ record {
+   category: text;
+   content: text;
+   coverImage: text;
+   excerpt: text;
+   id: nat;
+   pdfUrl: opt text;
+   publishDate: text;
+   title: text;
+ };
+service : {
+  adminChangePassword: (token: Token, newPassword: text) -> (Result);
+  adminCreateArticle: (token: Token, input: ArticleInput) -> (Result);
+  adminCreateNote: (token: Token, input: NoteInput) -> (Result);
+  adminCreatePublication: (token: Token, input: PublicationInput) -> (Result);
+  adminCreateResearch: (token: Token, input: ResearchInput) -> (Result);
+  adminDeleteArticle: (token: Token, id: nat) -> (Result);
+  adminDeleteNote: (token: Token, id: nat) -> (Result);
+  adminDeletePublication: (token: Token, id: nat) -> (Result);
+  adminDeleteResearch: (token: Token, id: nat) -> (Result);
+  adminGetContacts: (token: Token) ->
+   (variant {
+      err: text;
+      ok: vec ContactRecord;
+    });
+  adminLogin: (adminId: text, password: text) ->
+   (variant {
+      err: text;
+      ok: Token;
+    });
+  adminLogout: (token: Token) -> (Result);
+  adminUpdateArticle: (token: Token, id: nat, input: ArticleInput) ->
+   (Result);
+  adminUpdateNote: (token: Token, id: nat, input: NoteInput) -> (Result);
+  adminUpdateProfile: (token: Token, input: ProfileInput) -> (Result);
+  adminUpdatePublication: (token: Token, id: nat, input: PublicationInput) ->
+   (Result);
+  adminUpdateResearch: (token: Token, id: nat, input: ResearchInput) ->
+   (Result);
+  adminValidateToken: (token: Token) -> (bool) query;
+  getArticle: (id: nat) -> (opt Article) query;
+  getArticles: () -> (vec Article) query;
+  getNote: (id: nat) -> (opt Note) query;
+  getNotes: () -> (vec Note) query;
+  getProfile: () -> (opt Profile) query;
+  getPublication: (id: nat) -> (opt Publication) query;
+  getPublications: () -> (vec Publication) query;
+  getResearchProject: (id: nat) -> (opt ResearchProject) query;
+  getResearchProjects: () -> (vec ResearchProject) query;
+  submitContact: (submission: ContactSubmission) -> (Result);
+}

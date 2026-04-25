@@ -1,0 +1,107 @@
+// Version: 1.0.0
+type Article__249909230 =
+  {
+    category : Text;
+    content : Text;
+    coverImage : Text;
+    excerpt : Text;
+    id : Nat;
+    pdfUrl : ?Text;
+    publishDate : Text;
+    title : Text
+  };
+type ContactRecord__524275755 =
+  {
+    createdAt : Int;
+    email : Text;
+    id : Nat;
+    message : Text;
+    name : Text;
+    subject : Text
+  };
+type Milestone__179647944 = {description : Text; title : Text; year : Nat};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Note__320773633 =
+  {
+    content : Text;
+    excerpt : Text;
+    id : Nat;
+    pdfUrl : ?Text;
+    publishDate : Text;
+    tags : [Text];
+    title : Text
+  };
+type Profile__901378260 =
+  {
+    avatarUrl : Text;
+    bio : Text;
+    milestones : [Milestone__179647944];
+    name : Text;
+    skills : [Text];
+    stats : [StatItem__396984980]
+  };
+type Publication__128728685 =
+  {
+    authors : [Text];
+    id : Nat;
+    link : Text;
+    pdfUrl : ?Text;
+    pubType : Text;
+    title : Text;
+    venue : Text;
+    year : Nat
+  };
+type ResearchProject__131937320 =
+  {
+    description : Text;
+    fullContent : Text;
+    id : Nat;
+    imageUrl : Text;
+    pdfUrl : ?Text;
+    seqNum : Nat;
+    tags : [Text];
+    title : Text
+  };
+type StatItem__396984980 = {statLabel : Text; value : Text};
+actor {
+  stable adminState :
+    {var adminId : Text; var passwordHash : Text; var sessionToken : ?Text};
+  stable articles :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Article__249909230]];
+      var elementIndex : Nat__490723111
+    };
+  stable contacts :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ContactRecord__524275755]];
+      var elementIndex : Nat__490723111
+    };
+  stable var nextArticleId : Nat;
+  stable var nextContactId : Nat;
+  stable var nextNoteId : Nat;
+  stable var nextPublicationId : Nat;
+  stable var nextResearchId : Nat;
+  stable notes :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Note__320773633]];
+      var elementIndex : Nat__490723111
+    };
+  stable profileState : {var data : ?Profile__901378260};
+  stable projects :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ResearchProject__131937320]];
+      var elementIndex : Nat__490723111
+    };
+  stable publications :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Publication__128728685]];
+      var elementIndex : Nat__490723111
+    };
+  stable var seeded : Bool
+};

@@ -1,0 +1,25 @@
+{
+  "overview": "Personal portfolio website for Ashwin Singh Chouhan featuring Home, Research, Articles, Publications, Notes, About, and Contact sections — with a hidden admin panel for full content management, file uploads, and text editing across all sections.",
+  "features": [
+    "Animated hero section with ASC circular logo branding",
+    "9 research project cards with golden sequence badges and full scientific content",
+    "Articles, Publications, and Notes sections with detail views",
+    "Password-protected hidden admin dashboard",
+    "Admin can edit text and metadata across all 7 sections",
+    "File upload support for images and PDF documents",
+    "Rich text editing for long-form content",
+    "Session-based admin authentication with auto-logout",
+    "Responsive mobile-friendly design with hamburger menu",
+    "OKLCH design system with golden accents and dark mode"
+  ],
+  "category": "portfolio",
+  "tags": [
+    "portfolio",
+    "personal-website",
+    "admin-panel",
+    "content-management",
+    "research",
+    "pharmacology"
+  ],
+  "last_updated": "2026-04-18T10:19:54.065Z"
+}
